@@ -1,4 +1,3 @@
-// app/components/Gamification.tsx
 const gameFeatures = [
   { icon: "🎯", title: "Daily Challenges", text: "30-second rebuttals with zero filler words, perfect pitch presentations, and more micro-challenges" },
   { icon: "📊", title: "Performance Analytics", text: "Track your improvement over time with detailed metrics and predictive scoring" },

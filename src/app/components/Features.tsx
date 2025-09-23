@@ -1,4 +1,3 @@
-// app/components/Features.tsx
 const features = [
   {
     icon: "🎤",

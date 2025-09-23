@@ -1,4 +1,3 @@
-// app/components/Stats.tsx
 const stats = [
   { value: "92%", label: "Improvement in confidence" },
   { value: "10K+", label: "Active speakers" },

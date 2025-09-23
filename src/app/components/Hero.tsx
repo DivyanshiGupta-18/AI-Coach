@@ -1,4 +1,3 @@
-// app/components/Hero.tsx
 export default function Hero() {
   return (
     <section className="hero min-h-screen flex flex-col items-center justify-center text-center px-4 relative z-10">
@@ -7,7 +6,7 @@ export default function Hero() {
           Master Your Voice, Win Every Debate
         </h1>
         <p className="text-xl mb-8 opacity-90 leading-relaxed">
-          Transform your speaking skills with AI-powered coaching, real-time feedback, and gamified learning. From presentations to debates, become the confident speaker you've always wanted to be.
+          Transform your speaking skills with AI-powered coaching, real-time feedback, and gamified learning. From presentations to debates, become the confident speaker you always wanted to be.
         </p>
         <div className="flex flex-col md:flex-row justify-center gap-4">
           <a href="#demo" className="btn-primary">Start Free Trial</a>

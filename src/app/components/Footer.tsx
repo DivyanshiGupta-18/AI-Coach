@@ -1,4 +1,3 @@
-// app/components/Footer.tsx
 export default function Footer() {
   return (
     <footer className="py-12 text-center bg-black/80">

@@ -31,7 +31,7 @@ SpeakAI is a modern, AI-powered web platform to help students and professionals 
 
 ---
 
-## 📦 Setup & Development
+<!-- ## 📦 Setup & Development
 
 ### 1. **Clone the Repo**
-https://github.com/DivyanshiGupta-18/AI-Coach.git
+https://github.com/DivyanshiGupta-18/AI-Coach.git -->

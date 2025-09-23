@@ -1,4 +1,3 @@
-// app/components/ParticlesBg.tsx
 "use client";
 import { useEffect } from "react";
 
