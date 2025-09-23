@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SpeakAI – AI Debate & Presentation Coach
 
-## Getting Started
+**Master Your Voice, Win Every Debate!**  
+SpeakAI is a modern, AI-powered web platform to help students and professionals build world-class speaking, debate, and presentation skills, with live transcription, feedback, and gamified learning.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **🎤 Real-time Speech Analysis:** Instantly transcribe, analyze, and highlight issues like filler words, pace, and clarity as you speak.
+- **🧠 Emotion & Confidence Scoring:** Understand your own delivery, tone, hesitations, and receive actionable advice for improvement.
+- **💡 Personalized AI Tips:** Get adaptive, session-based suggestions powered by GPT-class models.
+- **🏆 Gamified Dashboard:** Earn rewards, maintain learning streaks, and track progress through a lively dashboard.
+- **🎭 Roleplay & Live Debates:** Compete against AI avatars or real users in live, moderated debate rooms.
+- **📊 Performance Analytics:** Visualize improvement over time and climb global leaderboards.
+- **Multi-language Ready:** Easily extend with support for Hindi, English, and more.
+- **Modern UI:** Built with Next.js 14+ App Router and Tailwind CSS — responsive, glassmorphic, and beautiful.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Tech Stack
 
-## Learn More
+- **Frontend:** Next.js (React 18+) & Tailwind CSS
+- **Backend (API):** Next.js API routes or Node.js Express (optional for custom AI endpoints)
+- **AI/ML:**
+  - Speech-to-Text: [OpenAI Whisper API](https://platform.openai.com/docs/guides/speech-to-text), [AssemblyAI](https://www.assemblyai.com/), or [Deepgram](https://deepgram.com/)
+  - Language & Sentiment Analysis: OpenAI GPT, HuggingFace, custom prompts
+- **Database:** MongoDB (user data, leaderboards, history)
+- **Auth & Hosting:** JWT Auth, hosted via [Vercel](https://vercel.com/) (frontend) and [Render](https://render.com/) or [Heroku](https://heroku.com/) (backend/api)
+- **Realtime Voice:** Web Audio API, WebRTC or WebSocket (streaming to backend)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📦 Setup & Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. **Clone the Repo**
+https://github.com/DivyanshiGupta-18/AI-Coach.git
