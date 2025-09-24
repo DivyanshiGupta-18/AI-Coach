@@ -33,7 +33,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 relative z-10">
+    <section id="features" className="py-12 relative z-10">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-4xl font-extrabold text-center mb-14 bg-gradient-to-r from-cyan-400 via-white to-cyan-300 bg-clip-text text-transparent">Powerful Features for Every Speaker</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

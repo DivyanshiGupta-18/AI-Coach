@@ -9,8 +9,8 @@ export default function Hero() {
           Transform your speaking skills with AI-powered coaching, real-time feedback, and gamified learning. From presentations to debates, become the confident speaker you always wanted to be.
         </p>
         <div className="flex flex-col md:flex-row justify-center gap-4">
-          <a href="#demo" className="btn-primary">Start Free Trial</a>
-          <a href="#features" className="btn-secondary">Watch Demo</a>
+          <button className="border border-white rounded-[10px] p-[15px]"> <a href="#voicecoach" className="btn-primary">Start Free Trial</a> </button>
+          <button className="border border-white rounded-[10px] p-[15px]"> <a href="#features" className="btn-secondary">Watch Demo</a> </button>
         </div>
       </div>
     </section>

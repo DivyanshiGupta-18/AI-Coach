@@ -7,7 +7,7 @@ const gameFeatures = [
 
 export default function Gamification() {
   return (
-    <section id="gamification" className="py-24 bg-gradient-to-r from-cyan-400/10 via-pink-400/10 to-black/10 relative z-10">
+    <section id="gamification" className="py-12 bg-gradient-to-r from-cyan-400/10 via-pink-400/10 to-black/10 relative z-10">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-4xl font-extrabold text-center mb-14 bg-gradient-to-r from-cyan-300 via-white to-pink-400 bg-clip-text text-transparent">Level Up Your Speaking Game</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

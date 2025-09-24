@@ -4,6 +4,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="font-extrabold text-2xl bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent mb-2">SpeakAI</div>
         <p className="text-white/80">© 2025 SpeakAI. Empowering speakers worldwide with AI-driven coaching.</p>
+        <p className="text-white/80">--- CodeDrifter ---</p>
       </div>
     </footer>
   );
