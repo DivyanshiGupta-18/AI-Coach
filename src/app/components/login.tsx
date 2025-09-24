@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function login() {
+export default function Login() { // Changed from "login" to "Login"
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -12,9 +12,9 @@ export default function login() {
     setLoading(true);
     setError("");
 
-    let route = mode === "login" ? "/api/auth/login" : "/api/auth/register";
+    const route = mode === "login" ? "/api/auth/login" : "/api/auth/register"; // Changed to const
     // Don't send name on login
-    let body =
+    const body = // Changed to const
       mode === "login"
         ? { email: form.email, password: form.password }
         : { name: form.name, email: form.email, password: form.password };
