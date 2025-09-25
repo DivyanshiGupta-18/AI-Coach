@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from "recharts";
 
 interface ChallengeScore {
   date: string;
@@ -24,13 +24,13 @@ export default function PerformanceAnalytics({ navigate }: { navigate: (path: st
 
   useEffect(() => {
     // Load performance data from localStorage
-    const savedData = localStorage.getItem('performanceData');
+    const savedData = localStorage.getItem("performanceData");
     if (savedData) {
       try {
         const parsedData = JSON.parse(savedData);
         setPerformanceData(parsedData);
       } catch (error) {
-        console.error('Error parsing performance data:', error);
+        console.error("Error parsing performance data:", error);
       }
     }
     setLoading(false);
@@ -71,11 +71,11 @@ export default function PerformanceAnalytics({ navigate }: { navigate: (path: st
 
   // Prepare challenge type data for bar chart
   const challengeTypes = [
-    '30-Second Rebuttal',
-    'Perfect Pitch Presentation',
-    'Impromptu Storytelling',
-    'Technical Explanation',
-    'Motivational Speech'
+    "30-Second Rebuttal",
+    "Perfect Pitch Presentation",
+    "Impromptu Storytelling",
+    "Technical Explanation",
+    "Motivational Speech"
   ];
 
   const challengeTypeData = challengeTypes.map(type => {
@@ -106,7 +106,7 @@ export default function PerformanceAnalytics({ navigate }: { navigate: (path: st
     <div className="min-h-screen bg-gradient-to-br from-[#0c0c0c] via-[#1a1a2e] to-[#16213e] py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <button 
-          onClick={() => router.push('/')}
+          onClick={() => router.push("/")}
           className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-6 transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -132,9 +132,9 @@ export default function PerformanceAnalytics({ navigate }: { navigate: (path: st
               Complete your daily challenges to start tracking your speaking progress and see detailed analytics.
             </p>
             <button 
-              onClick={() => router.push('/daily-challenges')}
+              onClick={() => router.push("/daily-challenges")}
               className="px-6 py-3 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600"
-            ><a href='/daily-challenges'>
+            ><a href="/daily-challenges">
               Start Daily Challenges
               </a>
             </button>
@@ -160,9 +160,9 @@ export default function PerformanceAnalytics({ navigate }: { navigate: (path: st
                   <div className="text-3xl font-bold text-pink-400">{stats.lowestScore}/10</div>
                   <div className="text-white/80 text-sm">Lowest</div>
                 </div>
-                <div className={`bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 text-center ${stats.improvement >= 0 ? 'border-green-400/30' : 'border-red-400/30'}`}>
-                  <div className={`text-3xl font-bold ${stats.improvement >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                    {stats.improvement >= 0 ? '+' : ''}{stats.improvement}
+                <div className={`bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 text-center ${stats.improvement >= 0 ? "border-green-400/30" : "border-red-400/30"}`}>
+                  <div className={`text-3xl font-bold ${stats.improvement >= 0 ? "text-green-400" : "text-red-400"}`}>
+                    {stats.improvement >= 0 ? "+" : ""}{stats.improvement}
                   </div>
                   <div className="text-white/80 text-sm">Improvement</div>
                 </div>
@@ -180,8 +180,8 @@ export default function PerformanceAnalytics({ navigate }: { navigate: (path: st
                       <XAxis dataKey="date" stroke="rgba(255,255,255,0.7)" />
                       <YAxis stroke="rgba(255,255,255,0.7)" domain={[0, 50]} />
                       <Tooltip 
-                        contentStyle={{ backgroundColor: 'rgba(0,0,0,0.7)', border: '1px solid rgba(255,255,255,0.2)' }}
-                        itemStyle={{ color: 'white' }}
+                        contentStyle={{ backgroundColor: "rgba(0,0,0,0.7)", border: "1px solid rgba(255,255,255,0.2)" }}
+                        itemStyle={{ color: "white" }}
                       />
                       <Legend />
                       <Line type="monotone" dataKey="totalScore" stroke="#22d3ee" strokeWidth={2} activeDot={{ r: 8 }} name="Total Score" />
@@ -200,8 +200,8 @@ export default function PerformanceAnalytics({ navigate }: { navigate: (path: st
                       <XAxis dataKey="name" stroke="rgba(255,255,255,0.7)" />
                       <YAxis stroke="rgba(255,255,255,0.7)" domain={[0, 10]} />
                       <Tooltip 
-                        contentStyle={{ backgroundColor: 'rgba(0,0,0,0.7)', border: '1px solid rgba(255,255,255,0.2)' }}
-                        itemStyle={{ color: 'white' }}
+                        contentStyle={{ backgroundColor: "rgba(0,0,0,0.7)", border: "1px solid rgba(255,255,255,0.2)" }}
+                        itemStyle={{ color: "white" }}
                       />
                       <Legend />
                       <Bar dataKey="average" fill="#f472b6" name="Average Score" />

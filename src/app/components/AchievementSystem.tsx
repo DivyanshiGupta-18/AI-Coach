@@ -1,6 +1,6 @@
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface Badge {
   id: string;
@@ -11,181 +11,181 @@ interface Badge {
   unlocked: boolean;
   progress: number;
   maxProgress: number;
-  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  rarity: "common" | "rare" | "epic" | "legendary";
 }
 
 export default function AchievementSystem({ navigate }: { navigate: (path: string) => void }) {
   const router = useRouter();
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [activeCategory, setActiveCategory] = useState<string>("all");
   
   const badges: Badge[] = [
     {
-      id: '1',
-      title: 'First Steps',
-      description: 'Complete your first daily challenge',
-      icon: '👣',
-      category: 'progression',
+      id: "1",
+      title: "First Steps",
+      description: "Complete your first daily challenge",
+      icon: "👣",
+      category: "progression",
       unlocked: true,
       progress: 1,
       maxProgress: 1,
-      rarity: 'common'
+      rarity: "common"
     },
     {
-      id: '2',
-      title: 'Week Streak',
-      description: 'Complete daily challenges for 7 days in a row',
-      icon: '🔥',
-      category: 'consistency',
+      id: "2",
+      title: "Week Streak",
+      description: "Complete daily challenges for 7 days in a row",
+      icon: "🔥",
+      category: "consistency",
       unlocked: true,
       progress: 7,
       maxProgress: 7,
-      rarity: 'rare'
+      rarity: "rare"
     },
     {
-      id: '3',
-      title: 'Debate Master',
-      description: 'Score 9/10 or higher on 5 rebuttal challenges',
-      icon: '🎤',
-      category: 'skill',
+      id: "3",
+      title: "Debate Master",
+      description: "Score 9/10 or higher on 5 rebuttal challenges",
+      icon: "🎤",
+      category: "skill",
       unlocked: false,
       progress: 3,
       maxProgress: 5,
-      rarity: 'epic'
+      rarity: "epic"
     },
     {
-      id: '4',
-      title: 'Filler-Free Week',
-      description: 'Complete a week of challenges without using filler words',
-      icon: '🚫',
-      category: 'skill',
+      id: "4",
+      title: "Filler-Free Week",
+      description: "Complete a week of challenges without using filler words",
+      icon: "🚫",
+      category: "skill",
       unlocked: false,
       progress: 4,
       maxProgress: 7,
-      rarity: 'rare'
+      rarity: "rare"
     },
     {
-      id: '5',
-      title: 'Perfect Pitch',
-      description: 'Score 10/10 on the Perfect Pitch Presentation challenge',
-      icon: '🎯',
-      category: 'skill',
+      id: "5",
+      title: "Perfect Pitch",
+      description: "Score 10/10 on the Perfect Pitch Presentation challenge",
+      icon: "🎯",
+      category: "skill",
       unlocked: true,
       progress: 1,
       maxProgress: 1,
-      rarity: 'epic'
+      rarity: "epic"
     },
     {
-      id: '6',
-      title: 'Social Butterfly',
-      description: 'Invite 5 friends to join SpeakAI',
-      icon: '🦋',
-      category: 'social',
+      id: "6",
+      title: "Social Butterfly",
+      description: "Invite 5 friends to join SpeakAI",
+      icon: "🦋",
+      category: "social",
       unlocked: false,
       progress: 2,
       maxProgress: 5,
-      rarity: 'common'
+      rarity: "common"
     },
     {
-      id: '7',
-      title: 'Top Performer',
-      description: 'Reach the top 10 on the global leaderboard',
-      icon: '🏆',
-      category: 'competition',
+      id: "7",
+      title: "Top Performer",
+      description: "Reach the top 10 on the global leaderboard",
+      icon: "🏆",
+      category: "competition",
       unlocked: true,
       progress: 1,
       maxProgress: 1,
-      rarity: 'legendary'
+      rarity: "legendary"
     },
     {
-      id: '8',
-      title: 'Storyteller',
-      description: 'Complete 10 storytelling challenges with a score of 8+',
-      icon: '📚',
-      category: 'skill',
+      id: "8",
+      title: "Storyteller",
+      description: "Complete 10 storytelling challenges with a score of 8+",
+      icon: "📚",
+      category: "skill",
       unlocked: false,
       progress: 6,
       maxProgress: 10,
-      rarity: 'rare'
+      rarity: "rare"
     },
     {
-      id: '9',
-      title: 'Month Streak',
-      description: 'Complete daily challenges for 30 days in a row',
-      icon: '🌟',
-      category: 'consistency',
+      id: "9",
+      title: "Month Streak",
+      description: "Complete daily challenges for 30 days in a row",
+      icon: "🌟",
+      category: "consistency",
       unlocked: false,
       progress: 14,
       maxProgress: 30,
-      rarity: 'epic'
+      rarity: "epic"
     },
     {
-      id: '10',
-      title: 'Betting Pro',
-      description: 'Win 10 improvement bets',
-      icon: '💰',
-      category: 'competition',
+      id: "10",
+      title: "Betting Pro",
+      description: "Win 10 improvement bets",
+      icon: "💰",
+      category: "competition",
       unlocked: false,
       progress: 7,
       maxProgress: 10,
-      rarity: 'rare'
+      rarity: "rare"
     },
     {
-      id: '11',
-      title: 'Mentor',
-      description: 'Help 3 friends improve their scores by 2+ points',
-      icon: '🤝',
-      category: 'social',
+      id: "11",
+      title: "Mentor",
+      description: "Help 3 friends improve their scores by 2+ points",
+      icon: "🤝",
+      category: "social",
       unlocked: false,
       progress: 1,
       maxProgress: 3,
-      rarity: 'epic'
+      rarity: "epic"
     },
     {
-      id: '12',
-      title: 'Polyglot',
-      description: 'Complete challenges in 3 different languages',
-      icon: '🌍',
-      category: 'skill',
+      id: "12",
+      title: "Polyglot",
+      description: "Complete challenges in 3 different languages",
+      icon: "🌍",
+      category: "skill",
       unlocked: false,
       progress: 1,
       maxProgress: 3,
-      rarity: 'legendary'
+      rarity: "legendary"
     }
   ];
 
-  const categories = ['all', 'progression', 'consistency', 'skill', 'social', 'competition'];
+  const categories = ["all", "progression", "consistency", "skill", "social", "competition"];
   
-  const filteredBadges = activeCategory === 'all' 
+  const filteredBadges = activeCategory === "all" 
     ? badges 
     : badges.filter(badge => badge.category === activeCategory);
 
   const getRarityColor = (rarity: string) => {
     switch(rarity) {
-      case 'common': return 'border-gray-400';
-      case 'rare': return 'border-blue-400';
-      case 'epic': return 'border-purple-400';
-      case 'legendary': return 'border-yellow-400';
-      default: return 'border-gray-400';
+      case "common": return "border-gray-400";
+      case "rare": return "border-blue-400";
+      case "epic": return "border-purple-400";
+      case "legendary": return "border-yellow-400";
+      default: return "border-gray-400";
     }
   };
 
   const getRarityBackground = (rarity: string) => {
     switch(rarity) {
-      case 'common': return 'bg-gray-900/50';
-      case 'rare': return 'bg-blue-900/30';
-      case 'epic': return 'bg-purple-900/30';
-      case 'legendary': return 'bg-gradient-to-br from-yellow-900/30 to-amber-900/30';
-      default: return 'bg-gray-900/50';
+      case "common": return "bg-gray-900/50";
+      case "rare": return "bg-blue-900/30";
+      case "epic": return "bg-purple-900/30";
+      case "legendary": return "bg-gradient-to-br from-yellow-900/30 to-amber-900/30";
+      default: return "bg-gray-900/50";
     }
   };
 
   const getRarityText = (rarity: string) => {
     switch(rarity) {
-      case 'common': return 'text-gray-300';
-      case 'rare': return 'text-blue-300';
-      case 'epic': return 'text-purple-300';
-      case 'legendary': return 'text-yellow-300';
-      default: return 'text-gray-300';
+      case "common": return "text-gray-300";
+      case "rare": return "text-blue-300";
+      case "epic": return "text-purple-300";
+      case "legendary": return "text-yellow-300";
+      default: return "text-gray-300";
     }
   };
 
@@ -197,7 +197,7 @@ export default function AchievementSystem({ navigate }: { navigate: (path: strin
     <div className="min-h-screen bg-gradient-to-br from-[#0c0c0c] via-[#1a1a2e] to-[#16213e] py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <button 
-          onClick={() => router.push('/')}
+          onClick={() => router.push("/")}
           className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-6 transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -211,7 +211,7 @@ export default function AchievementSystem({ navigate }: { navigate: (path: strin
             Achievement System
           </h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Unlock badges for milestones like 'Debate Master' or 'Filler-Free Week'
+            Unlock badges for milestones like "Debate Master" or "Filler-Free Week"
           </p>
         </header>
 
@@ -244,8 +244,8 @@ export default function AchievementSystem({ navigate }: { navigate: (path: strin
               onClick={() => setActiveCategory(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium capitalize transition-colors ${
                 activeCategory === category
-                  ? 'bg-gradient-to-r from-cyan-500 to-pink-500 text-white'
-                  : 'bg-white/10 text-white/70 hover:text-white hover:bg-white/20'
+                  ? "bg-gradient-to-r from-cyan-500 to-pink-500 text-white"
+                  : "bg-white/10 text-white/70 hover:text-white hover:bg-white/20"
               }`}
             >
               {category}
@@ -259,28 +259,28 @@ export default function AchievementSystem({ navigate }: { navigate: (path: strin
             <div 
               key={badge.id} 
               className={`rounded-2xl p-6 border-2 ${getRarityColor(badge.rarity)} ${getRarityBackground(badge.rarity)} ${
-                badge.unlocked ? '' : 'opacity-70'
+                badge.unlocked ? "" : "opacity-70"
               }`}
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="text-4xl">{badge.icon}</div>
                 <div className={`text-xs font-bold px-2 py-1 rounded-full ${
                   badge.unlocked 
-                    ? getRarityText(badge.rarity) + ' bg-black/30' 
-                    : 'text-gray-500 bg-black/20'
+                    ? getRarityText(badge.rarity) + " bg-black/30" 
+                    : "text-gray-500 bg-black/20"
                 }`}>
                   {badge.rarity}
                 </div>
               </div>
               
               <h3 className={`text-lg font-bold mb-2 ${
-                badge.unlocked ? 'text-white' : 'text-gray-400'
+                badge.unlocked ? "text-white" : "text-gray-400"
               }`}>
                 {badge.title}
               </h3>
               
               <p className={`text-sm mb-4 ${
-                badge.unlocked ? 'text-white/80' : 'text-gray-500'
+                badge.unlocked ? "text-white/80" : "text-gray-500"
               }`}>
                 {badge.description}
               </p>
