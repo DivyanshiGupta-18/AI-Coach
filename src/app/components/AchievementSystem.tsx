@@ -211,8 +211,8 @@ export default function AchievementSystem({ navigate }: { navigate: (path: strin
             Achievement System
           </h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Unlock badges for milestones like "Debate Master" or "Filler-Free Week"
-          </p>
+                 Unlock badges for milestones like &apos;Debate Master&apos; or &apos;Filler-Free Week&apos;
+</p>
         </header>
 
         {/* Progress Overview */}
