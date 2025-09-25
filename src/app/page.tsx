@@ -36,48 +36,10 @@ import Gamification from './components/Gamification';
 import Footer from '../app/components/Footer';
 import ParticlesBg from '../app/components/ParticlesBg';
 import Pricing from './components/pricing';
-// import Login from './components/Login';
 import DailyChallenges from './components/DailyChallenges';
 import PerformanceAnalytics from './components/PerformanceAnalytics';
 import CommunityCompetition from './components/CommunityCompetition';
 import AchievementSystem from './components/AchievementSystem';
-
-// Define routes
-const routes = {
-  '/': {
-    component: (
-      <>
-        <ParticlesBg />
-        <Hero />
-        <Features />
-        <VoiceCoach />
-        <Gamification navigate={Gamification} /> 
-        <Pricing />
-      </>
-    ),
-    title: 'SpeakAI - AI Voice Coach'
-  },
-  // '/login': {
-  //   component: <Login />,
-  //   title: 'Login - SpeakAI'
-  // },
-  '/daily-challenges': {
-    component: <DailyChallenges navigate={DailyChallenges} />, 
-    title: 'Daily Challenges - SpeakAI'
-  },
-  '/performance-analytics': {
-    component: <PerformanceAnalytics navigate={PerformanceAnalytics} />, 
-    title: 'Performance Analytics - SpeakAI'
-  },
-  '/community-competition': {
-    component: <CommunityCompetition navigate={CommunityCompetition} />, 
-    title: 'Community Competition - SpeakAI'
-  },
-  '/achievement-system': {
-    component: <AchievementSystem navigate={AchievementSystem} />, 
-    title: 'Achievement System - SpeakAI'
-  }
-};
 
 export default function Home() {
   const pathname = usePathname();
@@ -108,6 +70,39 @@ export default function Home() {
 
   const handleCloseLogin = () => {
     setShowLoginModal(false);
+  };
+
+  // Define routes with navigate function passed correctly
+  const routes = {
+    '/': {
+      component: (
+        <>
+          <ParticlesBg />
+          <Hero />
+          <Features />
+          <VoiceCoach />
+          <Gamification navigate={navigate} /> 
+          <Pricing />
+        </>
+      ),
+      title: 'SpeakAI - AI Voice Coach'
+    },
+    '/daily-challenges': {
+      component: <DailyChallenges navigate={navigate} />, 
+      title: 'Daily Challenges - SpeakAI'
+    },
+    '/performance-analytics': {
+      component: <PerformanceAnalytics navigate={navigate} />, 
+      title: 'Performance Analytics - SpeakAI'
+    },
+    '/community-competition': {
+      component: <CommunityCompetition navigate={navigate} />, 
+      title: 'Community Competition - SpeakAI'
+    },
+    '/achievement-system': {
+      component: <AchievementSystem navigate={navigate} />, 
+      title: 'Achievement System - SpeakAI'
+    }
   };
 
   // Get current route component
