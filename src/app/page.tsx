@@ -36,7 +36,7 @@ import Gamification from './components/Gamification';
 import Footer from '../app/components/Footer';
 import ParticlesBg from '../app/components/ParticlesBg';
 import Pricing from './components/pricing';
-import Login from './components/login';
+import Login from './components/Login';
 import DailyChallenges from './components/DailyChallenges';
 import PerformanceAnalytics from './components/PerformanceAnalytics';
 import CommunityCompetition from './components/CommunityCompetition';
