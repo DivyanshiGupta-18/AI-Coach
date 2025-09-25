@@ -2,8 +2,19 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-// export default function DailyChallenges() {
-  export default function DailyChallenges({ navigate }: { navigate: (path: string) => void }) {
+// Define a type for performance data entry
+interface PerformanceEntry {
+  date: string;
+  totalScore: number;
+  averageScore: number;
+  challenges: {
+    challengeTitle: string;
+    score: number;
+    feedback: string;
+  }[];
+}
+
+export default function DailyChallenges({ navigate: _navigate }: { navigate?: (path: string) => void }) {
   const router = useRouter();
   const [currentChallenge, setCurrentChallenge] = useState(0);
   const [scores, setScores] = useState<number[]>(Array(5).fill(0));
@@ -164,6 +175,8 @@ import { useRouter } from "next/navigation";
       setCurrentChallenge(currentChallenge + 1);
       setTranscript("");
     } else {
+      // Save performance data when all challenges are completed
+      savePerformanceData();
       setCompleted(true);
     }
   }
@@ -181,49 +194,38 @@ import { useRouter } from "next/navigation";
   }
 
   // Add this function to the DailyChallenges component
-function savePerformanceData() {
-  const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-  
-  const performanceEntry = {
-    date: today,
-    totalScore: calculateTotalScore(),
-    averageScore: calculateTotalScore() / 5,
-    challenges: dailyChallenges.map((challenge, index) => ({
-      challengeTitle: challenge.title,
-      score: scores[index],
-      feedback: feedback[index]
-    }))
-  };
+  function savePerformanceData() {
+    const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    
+    const performanceEntry: PerformanceEntry = {
+      date: today,
+      totalScore: calculateTotalScore(),
+      averageScore: calculateTotalScore() / 5,
+      challenges: dailyChallenges.map((challenge, index) => ({
+        challengeTitle: challenge.title,
+        score: scores[index],
+        feedback: feedback[index]
+      }))
+    };
 
-  // Get existing data
-  const existingData = JSON.parse(localStorage.getItem('performanceData') || '[]');
-  
-  // Check if we already have data for today
-  const todayIndex = existingData.findIndex((entry: any) => entry.date === today);
-  
-  if (todayIndex !== -1) {
-    // Update today's data
-    existingData[todayIndex] = performanceEntry;
-  } else {
-    // Add new data
-    existingData.push(performanceEntry);
+    // Get existing data with proper typing
+    const existingData: PerformanceEntry[] = JSON.parse(localStorage.getItem('performanceData') || '[]');
+    
+    // Check if we already have data for today
+    const todayIndex = existingData.findIndex((entry: PerformanceEntry) => entry.date === today);
+    
+    if (todayIndex !== -1) {
+      // Update today's data
+      existingData[todayIndex] = performanceEntry;
+    } else {
+      // Add new data
+      existingData.push(performanceEntry);
+    }
+    
+    // Save back to localStorage
+    localStorage.setItem('performanceData', JSON.stringify(existingData));
   }
-  
-  // Save back to localStorage
-  localStorage.setItem('performanceData', JSON.stringify(existingData));
-}
 
-// Call this function when challenges are completed
-function nextChallenge() {
-  if (currentChallenge < dailyChallenges.length - 1) {
-    setCurrentChallenge(currentChallenge + 1);
-    setTranscript("");
-  } else {
-    // Save performance data when all challenges are completed
-    savePerformanceData();
-    setCompleted(true);
-  }
-}
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0c0c0c] via-[#1a1a2e] to-[#16213e] py-12 px-4">
       <div className="max-w-4xl mx-auto">
