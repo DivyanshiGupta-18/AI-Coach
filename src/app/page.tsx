@@ -1,11 +1,11 @@
-// import NavBar from "../app/components/Navbar"
-// import Hero from "../app/components/Hero"
-// import Features from "../app/components/Features"
-// import VoiceCoach from "./components/VoiceCoach"
-// import Gamefication from "./components/Gamification"
-// import Footer from "../app/components/Footer"
-// import ParticlesBg from "../app/components/ParticlesBg"
-// import Pricing from "./components/pricing"
+// import NavBar from '../app/components/Navbar'
+// import Hero from '../app/components/Hero'
+// import Features from '../app/components/Features'
+// import VoiceCoach from './components/VoiceCoach'
+// import Gamefication from './components/Gamification'
+// import Footer from '../app/components/Footer'
+// import ParticlesBg from '../app/components/ParticlesBg'
+// import Pricing from './components/pricing'
 
 // export default function Home() {
 //   return (
@@ -26,25 +26,25 @@
 
 
 "use client";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import NavBar from "../app/components/Navbar";
-import Hero from "../app/components/Hero";
-import Features from "../app/components/Features";
-import VoiceCoach from "./components/VoiceCoach";
-import Gamification from "./components/Gamification";
-import Footer from "../app/components/Footer";
-import ParticlesBg from "../app/components/ParticlesBg";
-import Pricing from "./components/pricing";
-// import Login from "./components/Login";
-import DailyChallenges from "./components/DailyChallenges";
-import PerformanceAnalytics from "./components/PerformanceAnalytics";
-import CommunityCompetition from "./components/CommunityCompetition";
-import AchievementSystem from "./components/AchievementSystem";
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import NavBar from '../app/components/Navbar';
+import Hero from '../app/components/Hero';
+import Features from '../app/components/Features';
+import VoiceCoach from './components/VoiceCoach';
+import Gamification from './components/Gamification';
+import Footer from '../app/components/Footer';
+import ParticlesBg from '../app/components/ParticlesBg';
+import Pricing from './components/pricing';
+// import Login from './components/Login';
+import DailyChallenges from './components/DailyChallenges';
+import PerformanceAnalytics from './components/PerformanceAnalytics';
+import CommunityCompetition from './components/CommunityCompetition';
+import AchievementSystem from './components/AchievementSystem';
 
 // Define routes
 const routes = {
-  "/": {
+  '/': {
     component: (
       <>
         <ParticlesBg />
@@ -55,27 +55,27 @@ const routes = {
         <Pricing />
       </>
     ),
-    title: "SpeakAI - AI Voice Coach"
+    title: 'SpeakAI - AI Voice Coach'
   },
-  // "/login": {
+  // '/login': {
   //   component: <Login />,
-  //   title: "Login - SpeakAI"
+  //   title: 'Login - SpeakAI'
   // },
-  "/daily-challenges": {
+  '/daily-challenges': {
     component: <DailyChallenges navigate={DailyChallenges} />, 
-    title: "Daily Challenges - SpeakAI"
+    title: 'Daily Challenges - SpeakAI'
   },
-  "/performance-analytics": {
+  '/performance-analytics': {
     component: <PerformanceAnalytics navigate={PerformanceAnalytics} />, 
-    title: "Performance Analytics - SpeakAI"
+    title: 'Performance Analytics - SpeakAI'
   },
-  "/community-competition": {
+  '/community-competition': {
     component: <CommunityCompetition navigate={CommunityCompetition} />, 
-    title: "Community Competition - SpeakAI"
+    title: 'Community Competition - SpeakAI'
   },
-  "/achievement-system": {
+  '/achievement-system': {
     component: <AchievementSystem navigate={AchievementSystem} />, 
-    title: "Achievement System - SpeakAI"
+    title: 'Achievement System - SpeakAI'
   }
 };
 
@@ -86,20 +86,20 @@ export default function Home() {
 
   // Update document title based on route
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      document.title = routes[currentPath as keyof typeof routes]?.title || routes["/"].title;
+    if (typeof window !== 'undefined') {
+      document.title = routes[currentPath as keyof typeof routes]?.title || routes['/'].title;
     }
   }, [currentPath]);
 
   // Handle navigation
   const navigate = (path: string) => {
     setCurrentPath(path);
-    window.history.pushState({}, "", path);
+    window.history.pushState({}, '', path);
   };
 
   // Handle login modal
   const handleLoginClick = () => {
-    if (currentPath === "/login") {
+    if (currentPath === '/login') {
       // Already on login page, do nothing
       return;
     }
@@ -111,7 +111,7 @@ export default function Home() {
   };
 
   // Get current route component
-  const currentRoute = routes[currentPath as keyof typeof routes] || routes["/"];
+  const currentRoute = routes[currentPath as keyof typeof routes] || routes['/'];
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#0c0c0c] via-[#1a1a2e] to-[#16213e]">
@@ -189,7 +189,7 @@ export default function Home() {
                   </form>
                   <div className="mt-6 text-center">
                     <p className="text-sm text-white/70">
-                      Don"t have an account?{" "}
+                      Don&apos;t have an account?{' '}
                       <a href="#" className="font-medium text-cyan-400 hover:text-cyan-300">
                         Sign up
                       </a>
