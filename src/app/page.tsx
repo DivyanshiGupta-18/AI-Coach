@@ -28,19 +28,20 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import NavBar from '../app/components/Navbar';
-import Hero from '../app/components/Hero';
-import Features from '../app/components/Features';
+import NavBar from './components/Navbar'; // Fixed path
+import Hero from './components/Hero'; // Fixed path
+import Features from './components/Features'; // Fixed path
 import VoiceCoach from './components/VoiceCoach';
 import Gamification from './components/Gamification';
-import Footer from '../app/components/Footer';
-import ParticlesBg from '../app/components/ParticlesBg';
+import Footer from './components/Footer'; // Fixed path
+import ParticlesBg from './components/ParticlesBg'; // Fixed path
 import Pricing from './components/pricing';
-import Login from './components/Login'
+import Login from './components/Login'; // Fixed path
 import DailyChallenges from './components/DailyChallenges';
 import PerformanceAnalytics from './components/PerformanceAnalytics';
 import CommunityCompetition from './components/CommunityCompetition';
 import AchievementSystem from './components/AchievementSystem';
+
 
 // Define routes
 const routes = {
@@ -51,7 +52,7 @@ const routes = {
         <Hero />
         <Features />
         <VoiceCoach />
-        <Gamification navigate={Gamification} /> 
+        <Gamification /> 
         <Pricing />
       </>
     ),
@@ -62,19 +63,19 @@ const routes = {
     title: 'Login - SpeakAI'
   },
   '/daily-challenges': {
-    component: <DailyChallenges navigate={DailyChallenges} />, 
+    component: <DailyChallenges />, 
     title: 'Daily Challenges - SpeakAI'
   },
   '/performance-analytics': {
-    component: <PerformanceAnalytics navigate={PerformanceAnalytics} />, 
+    component: <PerformanceAnalytics />, 
     title: 'Performance Analytics - SpeakAI'
   },
   '/community-competition': {
-    component: <CommunityCompetition navigate={CommunityCompetition} />, 
+    component: <CommunityCompetition />, 
     title: 'Community Competition - SpeakAI'
   },
   '/achievement-system': {
-    component: <AchievementSystem navigate={AchievementSystem} />, 
+    component: <AchievementSystem />, 
     title: 'Achievement System - SpeakAI'
   }
 };
@@ -92,10 +93,13 @@ export default function Home() {
   }, [currentPath]);
 
   // Handle navigation
-  const navigate = (path: string) => {
-    setCurrentPath(path);
+ // Handle navigation
+const navigate = (path: string) => {
+  setCurrentPath(path);
+  if (typeof window !== 'undefined') {
     window.history.pushState({}, '', path);
-  };
+  }
+};
 
   // Handle login modal
   const handleLoginClick = () => {
