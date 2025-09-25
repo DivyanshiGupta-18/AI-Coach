@@ -279,8 +279,8 @@
 
 
 
-"use client";
-import React, { useState, useMemo } from 'react';
+"use client"
+import React, { useState, useMemo, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
 
 interface ChallengeScore {
@@ -315,7 +315,7 @@ const generateSampleData = (): PerformanceData[] => {
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() + i);
     
-    const challenges = challengeTypes.map((title, idx) => {
+    const challenges = challengeTypes.map((title) => {
       // Simulate some progression and variation
       const baseScore = 5 + (i * 0.2) + (Math.random() * 2 - 1); // Slight upward trend with noise
       const adjustedScore = Math.max(1, Math.min(10, Math.round(baseScore * 10) / 10));
@@ -343,8 +343,16 @@ const generateSampleData = (): PerformanceData[] => {
 };
 
 export default function PerformanceAnalytics() {
-  const [performanceData] = useState<PerformanceData[]>(generateSampleData());
-  const [selectedMetric, setSelectedMetric] = useState('accuracy');
+  const [performanceData, setPerformanceData] = useState<PerformanceData[]>([]);
+  const [loading, setLoading] = useState(true);
+  // Removed unused selectedMetric state
+
+  useEffect(() => {
+    // Generate sample data after component mounts
+    const sampleData = generateSampleData();
+    setPerformanceData(sampleData);
+    setLoading(false);
+  }, []);
 
   // Calculate comprehensive statistics
   const stats = useMemo(() => {
@@ -437,6 +445,17 @@ export default function PerformanceAnalytics() {
       { name: 'Needs Work (<5)', value: needsWork, color: '#ef4444' }
     ];
   }, [performanceData]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-cyan-400 mx-auto mb-4"></div>
+          <div className="text-white text-xl">Loading performance data...</div>
+        </div>
+      </div>
+    );
+  }
 
   if (!stats) return null;
 
