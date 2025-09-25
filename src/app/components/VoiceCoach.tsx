@@ -4,36 +4,94 @@ import { useState, useRef } from "react";
 export default function VoiceCoach() {
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState("");
+  const [aiTips, setAiTips] = useState("");
+  const [loading, setLoading] = useState(false);
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const chunks = useRef<Blob[]>([]);
 
   async function toggleRecording() {
     if (!isRecording) {
-      setTranscript("");
-      // Start recording
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const recorder = new MediaRecorder(stream);
-      recorder.ondataavailable = (e) => chunks.current.push(e.data);
-      recorder.onstop = async () => {
-        const blob = new Blob(chunks.current, { type: "audio/wav" });
-        chunks.current = [];
-        const base64 = await toBase64(blob);
+      try {
+        setTranscript("");
+        setAiTips("");
+        // Start recording
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const recorder = new MediaRecorder(stream);
+        recorder.ondataavailable = (e) => chunks.current.push(e.data);
+        recorder.onstop = async () => {
+          const blob = new Blob(chunks.current, { type: "audio/wav" });
+          chunks.current = [];
+          const base64 = await toBase64(blob);
+          
+          setLoading(true);
+          
+          try {
+            // Send audio to Gemini API for transcription
+            const response = await fetch(
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-goog-api-key": "AIzaSyAC3TovZwqUEW9lrvYuXLBjIiZY2sqXBpE",
+                },
+                body: JSON.stringify({
+                  contents: [
+                    {
+                      parts: [
+                        {
+                          inline_data: {
+                            mime_type: "audio/wav",
+                            data: base64,
+                          },
+                        },
+                        {
+                          text: "Transcribe the audio and provide speaking tips to improve clarity, pronunciation, and pacing.",
+                        },
+                      ],
+                    },
+                  ],
+                }),
+              }
+            );
 
-        // Send audio to backend for transcription
-        const res = await fetch("/api/transcribe", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ audioBase64: base64 }),
-        });
-        const data = await res.json();
-        setTranscript(
-          data.results?.[0]?.alternatives?.[0]?.transcript ||
-            "No transcript found"
-        );
-      };
-      recorder.start();
-      mediaRecorder.current = recorder;
-      setIsRecording(true);
+            const data = await response.json();
+            
+            if (data.candidates && data.candidates.length > 0) {
+              const content = data.candidates[0].content;
+              if (content.parts && content.parts.length > 0) {
+                const text = content.parts[0].text;
+                
+                // Try to separate transcript and tips
+                const parts = text.split(/\n\n|\n/);
+                if (parts.length > 1) {
+                  setTranscript(parts[0]);
+                  setAiTips(parts.slice(1).join("\n\n"));
+                } else {
+                  setTranscript(text);
+                  setAiTips("Great job! Keep practicing to improve your speaking skills.");
+                }
+              }
+            } else {
+              setTranscript("No transcript found");
+              setAiTips("Please try recording again with clearer audio.");
+            }
+          } catch (error) {
+            console.error("Error processing audio:", error);
+            setTranscript("Error processing audio");
+            setAiTips("Please check your internet connection and try again.");
+          } finally {
+            setLoading(false);
+          }
+        };
+        recorder.start();
+        mediaRecorder.current = recorder;
+        setIsRecording(true);
+      } catch (error) {
+        console.error("Error accessing microphone:", error);
+        setTranscript("Microphone access denied");
+        setAiTips("Please allow microphone access to use this feature.");
+      }
     } else {
       // Stop recording
       mediaRecorder.current?.stop();
@@ -50,18 +108,28 @@ export default function VoiceCoach() {
         </p>
         <button
           onClick={toggleRecording}
+          disabled={loading}
           className={`px-8 py-3 rounded-full font-semibold shadow-md transition-all text-lg ${
             isRecording
               ? "bg-gradient-to-r from-rose-400 to-cyan-400 text-white animate-pulse"
+              : loading
+              ? "bg-gray-400 text-gray-200 cursor-not-allowed"
               : "bg-white bg-opacity-90 text-cyan-500 hover:bg-cyan-400 hover:text-white"
           }`}
         >
-          {isRecording ? "Stop Recording" : "Start Recording"}
+          {isRecording ? "Stop Recording" : loading ? "Processing..." : "Start Recording"}
         </button>
+        
         <div className="w-full min-h-[70px] bg-black/60 border border-cyan-400/30 rounded-xl p-4 text-lg text-cyan-100 font-mono my-2">
           {transcript || "Your live transcript will appear here..."}
         </div>
-        {/* AI tips section... */}
+        
+        {aiTips && (
+          <div className="w-full bg-black/60 border border-pink-400/30 rounded-xl p-4 text-lg text-pink-100 my-2">
+            <h3 className="text-xl font-bold text-pink-300 mb-2">💡 AI Speaking Tips</h3>
+            <p className="whitespace-pre-line">{aiTips}</p>
+          </div>
+        )}
       </div>
     </section>
   );
