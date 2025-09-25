@@ -36,7 +36,7 @@ import Gamification from './components/Gamification';
 import Footer from '../app/components/Footer';
 import ParticlesBg from '../app/components/ParticlesBg';
 import Pricing from './components/pricing';
-import Login from './components/Login';
+// import Login from './components/Login';
 import DailyChallenges from './components/DailyChallenges';
 import PerformanceAnalytics from './components/PerformanceAnalytics';
 import CommunityCompetition from './components/CommunityCompetition';
@@ -57,10 +57,10 @@ const routes = {
     ),
     title: 'SpeakAI - AI Voice Coach'
   },
-  '/login': {
-    component: <Login />,
-    title: 'Login - SpeakAI'
-  },
+  // '/login': {
+  //   component: <Login />,
+  //   title: 'Login - SpeakAI'
+  // },
   '/daily-challenges': {
     component: <DailyChallenges navigate={DailyChallenges} />, 
     title: 'Daily Challenges - SpeakAI'

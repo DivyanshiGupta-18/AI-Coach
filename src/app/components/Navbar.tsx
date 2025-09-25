@@ -173,7 +173,8 @@ export default function NavBar({ onLoginClick, navigate, currentPath }: {
           <div className="flex gap-4">
             {/* Login Button */}
             <button 
-              onClick={onLoginClick}
+              // onClick={onLoginClick}
+              onClick={() => handleNavClick('/login')}
               className="border border-white rounded-[10px] p-[10px] hover:text-pink-400 transition"
             >
               Login / Signin
