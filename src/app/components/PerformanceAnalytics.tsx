@@ -646,7 +646,7 @@ export default function PerformanceAnalytics() {
                 <h3 className="font-bold text-purple-300 mb-2">🎯 Validation Results</h3>
                 <div className="text-purple-100 text-sm">
                   <p className="mb-2">
-                    <strong>Claim:</strong> &ldquo;70% info is right&rdquo;
+                    <strong>Claim:</strong>70% info is right
                   </p>
                   <p className="mb-2">
                     <strong>Actual Performance:</strong> {stats.accuracyRate}% accuracy rate
