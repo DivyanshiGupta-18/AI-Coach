@@ -309,17 +309,17 @@ const generateSampleData = (): PerformanceData[] => {
 
   const sampleData: PerformanceData[] = [];
   const startDate = new Date();
-  startDate.setDate(startDate.getDate() - 14); // Last 2 weeks
+  startDate.setDate(startDate.getDate() - 14);
 
   for (let i = 0; i < 15; i++) {
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() + i);
-    
+
     const challenges = challengeTypes.map((title) => {
       // Simulate some progression and variation
-      const baseScore = 5 + (i * 0.2) + (Math.random() * 2 - 1); // Slight upward trend with noise
+      const baseScore = 5 + (i * 0.2) + (Math.random() * 2 - 1);
       const adjustedScore = Math.max(1, Math.min(10, Math.round(baseScore * 10) / 10));
-      
+
       return {
         date: currentDate.toLocaleDateString(),
         challengeTitle: title,
@@ -357,13 +357,13 @@ export default function PerformanceAnalytics() {
   // Calculate comprehensive statistics
   const stats = useMemo(() => {
     if (performanceData.length === 0) return null;
-    
+
     const totalSessions = performanceData.length;
     const allScores = performanceData.flatMap(day => day.challenges.map(c => c.score));
     const highestScore = Math.max(...allScores);
     const lowestScore = Math.min(...allScores);
     const averageScore = allScores.reduce((sum, score) => sum + score, 0) / allScores.length;
-    
+
     // Calculate improvement trend
     const firstDay = performanceData[0].averageScore;
     const lastDay = performanceData[performanceData.length - 1].averageScore;
@@ -377,7 +377,7 @@ export default function PerformanceAnalytics() {
     // Calculate consistency (standard deviation)
     const variance = allScores.reduce((sum, score) => sum + Math.pow(score - averageScore, 2), 0) / allScores.length;
     const consistency = Math.sqrt(variance);
-    
+
     return {
       totalSessions,
       highestScore: Math.round(highestScore * 10) / 10,
@@ -390,20 +390,20 @@ export default function PerformanceAnalytics() {
   }, [performanceData]);
 
   // Prepare chart data
-  const chartData = useMemo(() => 
+  const chartData = useMemo(() =>
     performanceData.map(day => ({
       date: day.date,
       totalScore: day.totalScore,
       averageScore: day.averageScore,
       target: 35.0 // Target total score (7 * 5 challenges)
     }))
-  , [performanceData]);
+    , [performanceData]);
 
   // Challenge type performance analysis
   const challengeTypeData = useMemo(() => {
     const challengeTypes = [
       '30-Second Rebuttal',
-      'Perfect Pitch Presentation', 
+      'Perfect Pitch Presentation',
       'Impromptu Storytelling',
       'Technical Explanation',
       'Motivational Speech'
@@ -414,13 +414,13 @@ export default function PerformanceAnalytics() {
         .flatMap(day => day.challenges)
         .filter(challenge => challenge.challengeTitle === type)
         .map(challenge => challenge.score);
-      
-      const average = scores.length > 0 
-        ? scores.reduce((sum, score) => sum + score, 0) / scores.length 
+
+      const average = scores.length > 0
+        ? scores.reduce((sum, score) => sum + score, 0) / scores.length
         : 0;
-      
+
       const accuracy = (scores.filter(s => s >= 7).length / scores.length) * 100;
-      
+
       return {
         name: type.replace(' Presentation', '').replace(' Explanation', ''),
         average: Math.round(average * 10) / 10,
@@ -516,7 +516,7 @@ export default function PerformanceAnalytics() {
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                   <XAxis dataKey="date" stroke="rgba(255,255,255,0.7)" fontSize={10} />
                   <YAxis stroke="rgba(255,255,255,0.7)" domain={[0, 50]} />
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px' }}
                     itemStyle={{ color: 'white' }}
                   />
@@ -536,16 +536,16 @@ export default function PerformanceAnalytics() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={challengeTypeData} margin={{ bottom: 60 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis 
-                    dataKey="name" 
-                    stroke="rgba(255,255,255,0.7)" 
+                  <XAxis
+                    dataKey="name"
+                    stroke="rgba(255,255,255,0.7)"
                     fontSize={10}
                     angle={-45}
                     textAnchor="end"
                     height={60}
                   />
                   <YAxis stroke="rgba(255,255,255,0.7)" domain={[0, 10]} />
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px' }}
                     itemStyle={{ color: 'white' }}
                   />
@@ -570,7 +570,9 @@ export default function PerformanceAnalytics() {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }: { name: string; percent?: number }) =>
+                      `${name}: ${percent !== undefined ? (percent * 100).toFixed(0) : "0"}%`
+                    }
                     outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"
@@ -579,7 +581,7 @@ export default function PerformanceAnalytics() {
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px' }}
                     itemStyle={{ color: 'white' }}
                   />
@@ -595,16 +597,16 @@ export default function PerformanceAnalytics() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={challengeTypeData} margin={{ bottom: 60 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis 
-                    dataKey="name" 
-                    stroke="rgba(255,255,255,0.7)" 
+                  <XAxis
+                    dataKey="name"
+                    stroke="rgba(255,255,255,0.7)"
                     fontSize={10}
                     angle={-45}
                     textAnchor="end"
                     height={60}
                   />
                   <YAxis stroke="rgba(255,255,255,0.7)" domain={[0, 100]} />
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px' }}
                     itemStyle={{ color: 'white' }}
                     formatter={(value) => [`${value}%`, 'Target Achievement']}
@@ -676,21 +678,21 @@ export default function PerformanceAnalytics() {
             <div className="bg-black/40 p-4 rounded-lg border-l-4 border-cyan-400">
               <h3 className="font-bold text-cyan-300 mb-2">📊 Data Analysis</h3>
               <p className="text-white/80 text-sm">
-                Your current accuracy rate of {stats.accuracyRate}% {stats.accuracyRate >= 70 ? 'meets' : 'is approaching'} the 70% benchmark. 
+                Your current accuracy rate of {stats.accuracyRate}% {stats.accuracyRate >= 70 ? 'meets' : 'is approaching'} the 70% benchmark.
                 {stats.accuracyRate >= 70 ? ' Excellent work!' : ' Keep focusing on consistent performance.'}
               </p>
             </div>
             <div className="bg-black/40 p-4 rounded-lg border-l-4 border-green-400">
               <h3 className="font-bold text-green-300 mb-2">🎯 Focus Areas</h3>
               <p className="text-white/80 text-sm">
-                {challengeTypeData.sort((a, b) => a.average - b.average)[0].name} shows the most improvement potential. 
+                {challengeTypeData.sort((a, b) => a.average - b.average)[0].name} shows the most improvement potential.
                 Target this area for maximum impact.
               </p>
             </div>
             <div className="bg-black/40 p-4 rounded-lg border-l-4 border-yellow-400">
               <h3 className="font-bold text-yellow-300 mb-2">📈 Progress Tracking</h3>
               <p className="text-white/80 text-sm">
-                {stats.improvement > 0 ? 'Maintaining' : 'Establishing'} your upward trend requires consistent practice. 
+                {stats.improvement > 0 ? 'Maintaining' : 'Establishing'} your upward trend requires consistent practice.
                 Aim for {Math.max(4, stats.totalSessions / 3)} sessions per week.
               </p>
             </div>
