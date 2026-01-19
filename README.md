@@ -91,3 +91,22 @@ To run the project locally:
 1. Clone the repository  
 ```bash
 git clone https://github.com/DivyanshiGupta-18/AI-Coach.git
+
+2. Navigate to project directory
+```bash
+cd AI-Coach
+
+
+3. Install dependencies
+```bash
+npm install
+
+
+4. Start development server
+```bash
+npm run dev
+
+
+5. Open in browser
+```bash
+http://localhost:3000
