@@ -147,7 +147,3 @@ Feel free to open an issue or submit a pull request.
 If you have ideas or feedback, feel free to reach out through GitHub or LinkedIn.
 
 Let’s build confidence together! 🌱
-
-```
-
----
